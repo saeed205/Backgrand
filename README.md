@@ -1,35 +1,35 @@
-# 🎨 Awesome Web Backgrounds (مجموعه پس‌زمینه‌های متحرک وب)
+# 🎨 Awesome Web Backgrounds
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-به مخزن **Backgrand** خوش آمدید! این پروژه شامل مجموعه‌ای از پس‌زمینه‌های متحرک (Animated Backgrounds) مدرن و سبک است که با استفاده از HTML، CSS و JavaScript خالص پیاده‌سازی شده‌اند.
+Welcome to the **Backgrand** repository! This project features a collection of modern, lightweight, and **animated web backgrounds** created using pure HTML, CSS, and JavaScript.
 
-این کدها برای طراحان وب و توسعه‌دهندگان فرانت‌اند (Front-end) که به دنبال زیبا‌سازی ظاهر وب‌سایت خود هستند، بسیار کاربردی است.
-
----
-
-## 🌟 پروژه‌های موجود (Projects)
-
-در حال حاضر دو افکت ویژه در این مجموعه قرار دارد:
-
-### 1. 🌌 شفق قطبی (Aurora Background)
-یک افکت خیره‌کننده و آرامش‌بخش شبیه به **شفق قطبی (Northern Lights)**. این پس‌زمینه با ترکیب رنگ‌های گرادینت و انیمیشن‌های نرم، جلوه‌ای مدرن و مینیمال به صفحه وب شما می‌دهد.
-- **فایل:** `Backgrand-Aurora.html`
-- **مناسب برای:** صفحات لندینگ، هدر سایت، صفحات لاگین.
-
-### 2. 🌊 امواج هاف‌تون (Halftone Waves)
-تلفیقی از هنر رترو (Retro) و انیمیشن مدرن. این افکت با استفاده از نقاط (Dots) و حرکت موجی، یک الگوی بصری پویا و جذاب ایجاد می‌کند.
-- **فایل:** `Backgrand-Halftone-Waves.html`
-- **مناسب برای:** سایت‌های تکنولوژی، نمونه‌کارها (Portfolio)، و بخش‌های خلاقانه سایت.
+Perfect for frontend developers and web designers looking to enhance their UI with stunning visual effects without heavy external libraries.
 
 ---
 
-## 🚀 نحوه استفاده (How to Use)
+## 🌟 Featured Projects
 
-برای استفاده از این پس‌زمینه‌ها کافیست مخزن را کلون کنید یا فایل HTML مورد نظر را دانلود نمایید:
+Currently, this repository contains two distinct visual effects:
+
+### 1. 🌌 Aurora Background
+A mesmerizing and calming visual effect mimicking the **Northern Lights (Aurora Borealis)**. This background uses smooth gradient transitions to create a modern and minimal aesthetic.
+- **File:** `Backgrand-Aurora.html`
+- **Best for:** Landing pages, website headers, login screens, and hero sections.
+
+### 2. 🌊 Halftone Waves
+A blend of retro art and modern animation. This effect utilizes a dynamic **halftone dot pattern** that moves in a wave-like motion, creating depth and movement.
+- **File:** `Backgrand-Halftone-Waves.html`
+- **Best for:** Tech portfolios, creative agency sites, and 404 pages.
+
+---
+
+## 🚀 How to Use
+
+To use these backgrounds, simply clone the repository or download the HTML files directly:
 
 ```bash
 git clone [https://github.com/saeed205/Backgrand.git](https://github.com/saeed205/Backgrand.git)
