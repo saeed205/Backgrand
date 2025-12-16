@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halftone Waves - Classic</title>
+    <style>
+        /* Initial Settings */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a; /* Stylish dark gray */
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="halftoneCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('halftoneCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Grid settings - Clean and regular layout
+        let gap = 30; 
+        const baseRadius = 1.5; // Slightly delicate to contrast with larger dots
+        
+        let time = 0;
+        const mouse = { x: -1000, y: -1000 }; 
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            // Adjust dot spacing for mobile
+            if (width < 600) {
+                gap = 35; // Increase gap on mobile to prevent clutter
+            } else {
+                gap = 30;
+            }
+
+            initParticles(); 
+        }
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.initialX = x;
+                this.initialY = y;
+            }
+
+            draw() {
+                // Calculate distance
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Improved wave formula: combining three waves for organic motion
+                const wave = Math.sin(this.x * 0.005 + time) + 
+                             Math.cos(this.y * 0.003 + time * 0.8) + 
+                             Math.sin((this.x + this.y) * 0.001 + time * 0.5) * 0.5;
+                
+                // Calculate radius (slightly increased amplitude)
+                let radius = baseRadius + (wave * 2.2);
+
+                // Interactive mouse effect
+                const maxDistance = 400; // Increased interaction range
+                let force = 0;
+                if (distance < maxDistance) {
+                    force = (maxDistance - distance) / maxDistance;
+                    // Power function to soften the edges of the mouse effect
+                    force = Math.pow(force, 2); 
+                    radius += force * 15; 
+                }
+
+                if (radius < 0) radius = 0;
+
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
+                
+                // --- Coloring with depth ---
+                // Slight hue shift based on wave to prevent monotony
+                const hue = 352 + (wave * 4); // Slight fluctuation around the red hue
+                const sat = 85; 
+                
+                // Lightness: Small dots are darker, large dots are brighter
+                let light = 40 + (radius * 6); 
+                
+                if (distance < maxDistance) {
+                    light += force * 50;
+                }
+                
+                // Prevent absolute white (to preserve warmth)
+                if (light > 95) light = 95;
+
+                ctx.fillStyle = `hsl(${hue}, ${sat}%, ${light}%)`;
+                
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            // Simple square grid (cleaner look without honeycomb pattern)
+            for (let x = 0; x < width + gap; x += gap) {
+                for (let y = 0; y < height + gap; y += gap) {
+                    // Simple offset for even rows
+                    let xPos = x;
+                    if ((y / gap) % 2 === 0) {
+                        xPos += gap / 2; 
+                    }
+                    particles.push(new Particle(xPos, y));
+                }
+            }
+        }
+
+        function animate() {
+            // Slightly transparent trail for clearer motion visibility
+            ctx.fillStyle = 'rgba(26, 26, 26, 0.25)'; 
+            ctx.fillRect(0, 0, width, height);
+
+            particles.forEach(p => p.draw());
+
+            time += 0.025; // Slightly slower, more elegant speed
+            requestAnimationFrame(animate);
+        }
+
+        // Events
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        // Touch support for mobile
+        window.addEventListener('touchmove', (e) => {
+            if(e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, {passive: true});
+
+        window.addEventListener('resize', resize);
+
+        resize();
+        animate();
+
+    </script>
+</body>
+</html>
